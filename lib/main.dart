@@ -32,6 +32,17 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
         Card(
+          child: Column(children: <Widget>[
+            TextField(
+              decoration: InputDecoration(labelText: 'Name your task'),
+            ),
+            TextField(
+              decoration: InputDecoration(labelText: 'Tell us more'),
+            ),
+            RaisedButton(child: Text('ADD'), onPressed: () {}),
+          ]),
+        ),
+        Card(
           child: Column(
             children: tasks.map((tsk) {
               return Row(
