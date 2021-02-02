@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import './task.dart';
+import './tasklist.dart';
+import './newtask.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,8 +15,12 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  final List<Task> tasks = [
+class MyHomePage extends StatefulWidget {
+  State<StatefulWidget> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final List<Task> _tasks = [
     Task(title: 'Name of your task', note: 'Detail of your task', check: false),
   ];
   // This widget is the home page of this application.
@@ -31,34 +37,8 @@ class MyHomePage extends StatelessWidget {
             child: Text('CHART', textAlign: TextAlign.center),
           ),
         ),
-        Card(
-          child: Column(children: <Widget>[
-            TextField(
-              decoration: InputDecoration(labelText: 'Name your task'),
-            ),
-            TextField(
-              decoration: InputDecoration(labelText: 'Tell us more'),
-            ),
-            RaisedButton(child: Text('ADD'), onPressed: () {}),
-          ]),
-        ),
-        Card(
-          child: Column(
-            children: tasks.map((tsk) {
-              return Row(
-                children: <Widget>[
-                  Card(
-                    child: Text('${tsk.check}'),
-                  ),
-                  Column(children: <Widget>[
-                    Text('${tsk.title}'),
-                    Text('${tsk.note}'),
-                  ]),
-                ],
-              );
-            }).toList(),
-          ),
-        ),
+        NewTask(),
+        TaskList(_tasks),
       ])),
     );
   }
