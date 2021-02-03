@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import './usertask.dart';
+import './task.dart';
+import './newtask.dart';
+import './tasklist.dart';
 
 void main() => runApp(MyApp());
 
@@ -19,22 +21,48 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final List<Task> _tasks = [];
+
+  // This method add new task into the task list
+  void _addNewTask(String title, String note) {
+    final _newtsk = Task(
+        title: title,
+        note: note,
+        check: false,
+        date: DateTime.now()); // Instantiate new task with default properties
+
+    setState(() {
+      _tasks.add(_newtsk);
+    });
+  }
+
+  // This method passes a private method to NewTask
+  void _startAddNewTask(BuildContext context) => showModalBottomSheet(
+      builder: (_) => NewTask(_addNewTask), context: context);
+
   // This widget is the home page of this application.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('TASK PLANNER'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () => _startAddNewTask(context),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
-          child: Column(children: <Widget>[
-        Card(
-          child: Container(
-            child: Text('CHART', textAlign: TextAlign.center),
+        child: Column(children: <Widget>[
+          Card(
+            child: Container(
+              child: Text('CHART', textAlign: TextAlign.center),
+            ),
           ),
-        ),
-        UserTask(),
-      ])),
+          TaskList(_tasks),
+        ]),
+      ),
     );
   }
 }

@@ -17,8 +17,18 @@ class TaskList extends StatelessWidget {
               ),
               Container(
                 child: Column(children: <Widget>[
-                  Text('${tsk.title}'),
-                  Text('${tsk.note}'),
+                  Text(
+                    '${tsk.title}',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    '${tsk.note}',
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
                 ]),
                 padding: EdgeInsets.all(20),
               ),
