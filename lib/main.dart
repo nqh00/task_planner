@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import './task.dart';
-import './tasklist.dart';
-import './newtask.dart';
+import './usertask.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,13 +14,11 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  State<StatefulWidget> createState() => _MyHomePageState();
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Task> _tasks = [
-    Task(title: 'Name of your task', note: 'Detail of your task', check: false),
-  ];
   // This widget is the home page of this application.
   @override
   Widget build(BuildContext context) {
@@ -37,8 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Text('CHART', textAlign: TextAlign.center),
           ),
         ),
-        NewTask(),
-        TaskList(_tasks),
+        UserTask(),
       ])),
     );
   }

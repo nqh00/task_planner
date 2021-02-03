@@ -2,7 +2,12 @@ import 'package:flutter/foundation.dart';
 
 class Task {
   final String title;
-  final String note;
+  String note;
   final bool check;
-  Task({@required this.title, @required this.note, @required this.check});
+  DateTime date;
+  Task(
+      {@required this.title,
+      @required this.check,
+      @required this.date,
+      this.note});
 }

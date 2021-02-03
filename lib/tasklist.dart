@@ -13,12 +13,17 @@ class TaskList extends StatelessWidget {
             children: <Widget>[
               Card(
                 child: Text('${tsk.check}'),
+                elevation: 5,
               ),
-              Column(children: <Widget>[
-                Text('${tsk.title}'),
-                Text('${tsk.note}'),
-              ]),
+              Container(
+                child: Column(children: <Widget>[
+                  Text('${tsk.title}'),
+                  Text('${tsk.note}'),
+                ]),
+                padding: EdgeInsets.all(20),
+              ),
             ],
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           );
         }).toList(),
       ),
