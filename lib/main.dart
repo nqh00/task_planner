@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './task.dart';
 import './newtask.dart';
 import './tasklist.dart';
+import './chart.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,6 +26,14 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Task> _tasks = [];
+
+  // This method extract the recently added task from the task list.
+  // The range is within 7 days from now.
+  List<Task> get _recentTasks {
+    return _tasks.where((tsk) {
+      return tsk.date.isAfter(DateTime.now().subtract(Duration(days: 7)));
+    }).toList();
+  }
 
   // This method add new task into the task list
   void _addNewTask(String title, String note) {
@@ -59,11 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Card(
-              child: Container(
-                child: Text('CHART', textAlign: TextAlign.center),
-              ),
-            ),
+            Chart(_recentTasks),
             TaskList(_tasks),
           ],
         ),
