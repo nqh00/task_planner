@@ -40,6 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final _newtsk = Task(
         title: title,
         note: note,
+        progress: 0,
         check: false,
         date: DateTime.now()); // Instantiate new task with default properties
 
