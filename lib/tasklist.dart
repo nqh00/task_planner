@@ -21,12 +21,14 @@ class TaskList extends StatelessWidget {
                     '${tsk.title}',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
+                      color: Theme.of(context).primaryColorDark,
                     ),
                   ),
                   Text(
                     '${tsk.note}',
                     style: TextStyle(
                       fontStyle: FontStyle.italic,
+                      color: Theme.of(context).primaryColorLight,
                     ),
                   ),
                 ]),

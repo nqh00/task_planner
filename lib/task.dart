@@ -2,9 +2,9 @@ import 'package:flutter/foundation.dart';
 
 class Task {
   final String title;
-  String note;
+  final String note;
   final bool check;
-  DateTime date;
+  final DateTime date;
   Task(
       {@required this.title,
       @required this.check,

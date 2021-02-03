@@ -11,6 +11,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: MyHomePage(),
+      theme: ThemeData(
+        primarySwatch: Colors.brown,
+      ),
     );
   }
 }
@@ -54,15 +57,22 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: SingleChildScrollView(
-        child: Column(children: <Widget>[
-          Card(
-            child: Container(
-              child: Text('CHART', textAlign: TextAlign.center),
+        child: Column(
+          children: <Widget>[
+            Card(
+              child: Container(
+                child: Text('CHART', textAlign: TextAlign.center),
+              ),
             ),
-          ),
-          TaskList(_tasks),
-        ]),
+            TaskList(_tasks),
+          ],
+        ),
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => _startAddNewTask(context),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
