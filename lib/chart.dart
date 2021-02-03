@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './task.dart';
+import './barchart.dart';
 
 class Chart extends StatelessWidget {
   final List<Task> recentTasks;
@@ -34,11 +35,12 @@ class Chart extends StatelessWidget {
     return Card(
       child: Row(
         children: groupedTaskValue.map((taskValue) {
-          return Text(
-            '${taskValue['day']}:${taskValue['progress']} ',
-          );
+          return Bar(
+              weekDate: taskValue['day'],
+              progress: taskValue['progress'],
+              total: taskValue['total']);
         }).toList(),
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
       ),
     );
   }
