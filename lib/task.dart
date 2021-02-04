@@ -9,9 +9,9 @@ class Task {
 
   Task({
     @required this.title,
+    @required this.note,
     @required this.check,
     @required this.progress,
     @required this.date,
-    this.note,
   });
 }

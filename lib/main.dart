@@ -6,8 +6,9 @@ import './chart.dart';
 
 void main() => runApp(MyApp());
 
+// This is the main application widget
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  // This widget is the root of your application
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,16 +20,18 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// This is the stateful widget that the main application instantiates
 class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
+// This is the private State class that goes with MyStatefulWidget
 class _MyHomePageState extends State<MyHomePage> {
   final List<Task> _tasks = [];
 
-  // This method extract the recently added task from the task list.
-  // The range is within 7 days from now.
+  // This method extract the recently added task from the task list
+  // The range is within 7 days from now
   List<Task> get _recentTasks {
     return _tasks.where((tsk) {
       return tsk.date.isAfter(DateTime.now().subtract(Duration(days: 7)));
@@ -36,13 +39,15 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   // This method add new task into the task list
-  void _addNewTask(String title, String note) {
+  void _addNewTask(String title, String note, double progress, DateTime date) {
     final _newtsk = Task(
         title: title,
         note: note,
-        progress: 0,
+        progress: 20,
         check: false,
-        date: DateTime.now()); // Instantiate new task with default properties
+        date: date == null
+            ? DateTime.now()
+            : date); // Instantiate new task with default properties
 
     setState(() {
       _tasks.add(_newtsk);

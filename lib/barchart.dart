@@ -12,6 +12,35 @@ class Bar extends StatelessWidget {
     return (total == 0) ? 0 : (progress / (100 * total));
   }
 
+  // This method return date with correspond letter
+  String date(String weekdate) {
+    switch (weekdate) {
+      case '1':
+        return 'Mon';
+        break;
+      case '2':
+        return 'Tues';
+        break;
+      case '3':
+        return 'Wed';
+        break;
+      case '4':
+        return 'Thu';
+        break;
+      case '5':
+        return 'Fri';
+        break;
+      case '6':
+        return 'Sat';
+        break;
+      case '7':
+        return 'Sun';
+        break;
+      default:
+        return null;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
@@ -50,7 +79,7 @@ class Bar extends StatelessWidget {
             ), // A percentage bar chart that stack over previous widget
           ])), // A bar chart contain empty bar and percentage bar
       SizedBox(height: 5), // A blank of space
-      Text(weekDate), // A letter of date
+      Text(date(weekDate)), // A letter of date
       SizedBox(height: 5), // A blank of space
     ]);
   }
