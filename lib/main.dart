@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final _newtsk = Task(
         title: title,
         note: note,
-        progress: 20,
+        progress: progress,
         check: false,
         date: date == null
             ? DateTime.now()

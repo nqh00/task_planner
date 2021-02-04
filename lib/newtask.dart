@@ -20,8 +20,8 @@ class _NewTaskState extends State<NewTask> {
 
     if (titleInput.isEmpty) return;
 
-    widget._taskController(
-        titleInput, noteInput, _currentSliderProgress, _pickedDate); // user widget to access private class State
+    widget._taskController(titleInput, noteInput, _currentSliderProgress,
+        _pickedDate); // user widget to access private class State
 
     Navigator.of(context).pop(); // Close keyboard after submitted input
   }
@@ -35,6 +35,7 @@ class _NewTaskState extends State<NewTask> {
             context: context)
         .then((future) {
       if (future == null) return;
+
       setState(() {
         _pickedDate = future;
       });
