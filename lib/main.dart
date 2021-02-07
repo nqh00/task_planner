@@ -71,14 +71,12 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
+      body: Column(
           children: <Widget>[
             Chart(_recentTasks),
             TaskList(_tasks),
           ],
         ),
-      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () => _startAddNewTask(context),

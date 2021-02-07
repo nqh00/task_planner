@@ -6,39 +6,50 @@ class TaskList extends StatelessWidget {
   TaskList(this.tasks);
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        children: tasks.map((tsk) {
-          return Row(
-            children: <Widget>[
-              Card(
-                child: Text('${tsk.check}'),
-                elevation: 5,
+    return Container(
+      height: 440,
+      child: tasks.isEmpty
+          ? Container(
+              child: Text(
+                'No tasks available.',
+                textAlign: TextAlign.center,
               ),
-              Container(
-                child: Column(children: <Widget>[
-                  Text(
-                    '${tsk.title}',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).primaryColorDark,
-                    ),
+            )
+          : ListView.builder(
+              itemBuilder: (context, index) {
+                return Card(
+                  child: Row(
+                    children: <Widget>[
+                      Card(
+                        child: Icon(
+                          Icons.check_box_outline_blank_rounded,
+                        ),
+                      ),
+                      Flexible(
+                        fit: FlexFit.tight,
+                        child: Column(children: <Widget>[
+                          Text(
+                            '${tasks[index].title}',
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColorDark,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            '${tasks[index].note}',
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColorLight,
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                        ]),
+                      )
+                    ],
                   ),
-                  Text(
-                    '${tsk.note}',
-                    style: TextStyle(
-                      fontStyle: FontStyle.italic,
-                      color: Theme.of(context).primaryColorLight,
-                    ),
-                  ),
-                ]),
-                padding: EdgeInsets.all(20),
-              ),
-            ],
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          );
-        }).toList(),
-      ),
+                );
+              },
+              itemCount: tasks.length,
+            ),
     );
   }
 }
