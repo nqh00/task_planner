@@ -3,7 +3,10 @@ import './task.dart';
 
 class TaskList extends StatelessWidget {
   final List<Task> tasks;
-  TaskList(this.tasks);
+  final Function checkTaskController;
+  final Function deleteTaskController;
+  TaskList(this.tasks, this.checkTaskController, this.deleteTaskController);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,10 +23,16 @@ class TaskList extends StatelessWidget {
                 return Card(
                   child: ListTile(
                     leading: IconButton(
-                      icon: Icon(
-                        Icons.check_box_outline_blank_rounded,
-                      ),
-                      onPressed: () {},
+                      icon: (tasks[index].progress == 100)
+                          ? Icon(
+                              Icons.check_box_rounded,
+                              color: Theme.of(context).shadowColor,
+                            )
+                          : Icon(
+                              Icons.check_box_outline_blank_rounded,
+                              color: Theme.of(context).shadowColor,
+                            ),
+                      onPressed: () => checkTaskController(tasks[index].id),
                     ), // Checkbox button
                     title: Text(
                       '${tasks[index].title}',
@@ -43,7 +52,8 @@ class TaskList extends StatelessWidget {
                       icon: Icon(
                         Icons.delete,
                       ),
-                      onPressed: () {},
+                      color: Theme.of(context).errorColor,
+                      onPressed: () => deleteTaskController(tasks[index].id),
                     ),
                   ), // Delete button
                   elevation: 5,

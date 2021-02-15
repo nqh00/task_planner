@@ -1,13 +1,15 @@
 import 'package:flutter/foundation.dart';
 
 class Task {
+  final String id;
   final String title;
   final String note;
-  final bool check;
-  final double progress;
-  final DateTime date;
+  bool check;
+  double progress;
+  DateTime date;
 
   Task({
+    @required this.id,
     @required this.title,
     @required this.note,
     @required this.check,

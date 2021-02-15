@@ -41,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   // This method add new task into the task list
   void _addNewTask(String title, String note, double progress, DateTime date) {
     final _newtsk = Task(
+        id: DateTime.now().toString(),
         title: title,
         note: note,
         progress: progress,
@@ -58,6 +59,24 @@ class _MyHomePageState extends State<MyHomePage> {
   void _startAddNewTask(BuildContext context) => showModalBottomSheet(
       builder: (_) => NewTask(_addNewTask), context: context);
 
+  // This method set the task progress to hundred percent or reset progress
+  void _checkedTask(String id) {
+    setState(() {
+      for (Task tsk in _tasks) {
+        if (tsk.id == id) {
+          (tsk.progress == 100) ? tsk.progress = 0 : tsk.progress = 100;
+        }
+      }
+    });
+  }
+
+  // This method delete element of tasks with correspond id which is timestamp
+  void _deleteTask(String id) {
+    setState(() {
+      _tasks.removeWhere((tsk) => tsk.id == id);
+    });
+  }
+
   // This widget is the home page of this application.
   @override
   Widget build(BuildContext context) {
@@ -72,11 +91,11 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: Column(
-          children: <Widget>[
-            Chart(_recentTasks),
-            TaskList(_tasks),
-          ],
-        ),
+        children: <Widget>[
+          Chart(_recentTasks),
+          TaskList(_tasks, _checkedTask, _deleteTask),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () => _startAddNewTask(context),
