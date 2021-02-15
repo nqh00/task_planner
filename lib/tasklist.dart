@@ -13,39 +13,40 @@ class TaskList extends StatelessWidget {
               child: Text(
                 'No tasks available.',
                 textAlign: TextAlign.center,
-              ),
+              ), // Display when theres no tasks
             )
           : ListView.builder(
               itemBuilder: (context, index) {
                 return Card(
-                  child: Row(
-                    children: <Widget>[
-                      Card(
-                        child: Icon(
-                          Icons.check_box_outline_blank_rounded,
-                        ),
+                  child: ListTile(
+                    leading: IconButton(
+                      icon: Icon(
+                        Icons.check_box_outline_blank_rounded,
                       ),
-                      Flexible(
-                        fit: FlexFit.tight,
-                        child: Column(children: <Widget>[
-                          Text(
-                            '${tasks[index].title}',
-                            style: TextStyle(
-                              color: Theme.of(context).primaryColorDark,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            '${tasks[index].note}',
-                            style: TextStyle(
-                              color: Theme.of(context).primaryColorLight,
-                              fontStyle: FontStyle.italic,
-                            ),
-                          ),
-                        ]),
-                      )
-                    ],
-                  ),
+                      onPressed: () {},
+                    ), // Checkbox button
+                    title: Text(
+                      '${tasks[index].title}',
+                      style: TextStyle(
+                        color: Theme.of(context).primaryColorDark,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ), // Task title
+                    subtitle: Text(
+                      '${tasks[index].note}',
+                      style: TextStyle(
+                        color: Theme.of(context).primaryColorLight,
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ), // Task note
+                    trailing: IconButton(
+                      icon: Icon(
+                        Icons.delete,
+                      ),
+                      onPressed: () {},
+                    ),
+                  ), // Delete button
+                  elevation: 5,
                 );
               },
               itemCount: tasks.length,
