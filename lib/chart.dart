@@ -10,24 +10,26 @@ class Chart extends StatelessWidget {
   // This getter method group all the tasks
   // Then return a map with week date and the correspond task
   List<Map<String, Object>> get groupedTaskValue {
-    return List.generate(7, (index) {
-      final weekDay = DateTime.now().subtract(
-        Duration(days: index),
-      );
-      double progress = 0;
+    List<double> progress = [0, 0, 0, 0, 0, 0, 0];
+    List<int> total = [0, 0, 0, 0, 0, 0, 0];
 
-      for (int i = 0; i < recentTasks.length; i++) {
-        if (recentTasks[i].date.weekday == weekDay.weekday) {
-          progress += recentTasks[i].progress;
+    for (Task tsk in recentTasks) {
+      for (int i = 0; i < 7; i++) {
+        if (tsk.date.weekday == (i + 1)) {
+          progress[i] += tsk.progress;
+          total[i]++;
         }
       }
-
-      return {
-        'day': '${weekDay.weekday}',
-        'progress': progress,
-        'total': recentTasks.length
-      };
-    }).toList();
+    }
+    return [
+      {'day': 'Mon', 'progress': progress[0], 'total': total[0]},
+      {'day': 'Tues', 'progress': progress[1], 'total': total[1]},
+      {'day': 'Wed', 'progress': progress[2], 'total': total[2]},
+      {'day': 'Thu', 'progress': progress[3], 'total': total[3]},
+      {'day': 'Fri', 'progress': progress[4], 'total': total[4]},
+      {'day': 'Sat', 'progress': progress[5], 'total': total[5]},
+      {'day': 'Sun', 'progress': progress[6], 'total': total[6]}
+    ];
   }
 
   @override

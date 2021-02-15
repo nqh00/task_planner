@@ -30,14 +30,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final List<Task> _tasks = [];
 
-  // This method extract the recently added task from the task list
-  // The range is within 7 days from now
-  List<Task> get _recentTasks {
-    return _tasks.where((tsk) {
-      return tsk.date.isAfter(DateTime.now().subtract(Duration(days: 7)));
-    }).toList();
-  }
-
   // This method add new task into the task list
   void _addNewTask(String title, String note, double progress, DateTime date) {
     final _newtsk = Task(
@@ -92,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         children: <Widget>[
-          Chart(_recentTasks),
+          Chart(_tasks),
           TaskList(_tasks, _checkedTask, _deleteTask),
         ],
       ),
