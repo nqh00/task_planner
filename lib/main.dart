@@ -49,7 +49,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
   // This method passes a private method to NewTask
   void _startAddNewTask(BuildContext context) => showModalBottomSheet(
-      builder: (_) => NewTask(_addNewTask), context: context);
+        builder: (_) => NewTask(_addNewTask),
+        context: context,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(30),
+          ),
+        ),
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+      );
 
   // This method set the task progress to hundred percent or reset progress
   void _checkedTask(String id) {

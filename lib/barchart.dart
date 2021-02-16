@@ -14,6 +14,9 @@ class Bar extends StatelessWidget {
       FittedBox(
         child: Text(
           total == 0 ? '0%' : (progress / total).toStringAsFixed(0) + '\%',
+          style: TextStyle(
+            color: Theme.of(context).primaryColorDark,
+          ),
         ),
       ), // A box widget displaying progress' percentage
       SizedBox(height: 5), // A blank of space
@@ -24,10 +27,10 @@ class Bar extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Colors.black,
-                  width: 1,
+                  color: Theme.of(context).primaryColorDark,
+                  width: 2,
                 ),
-                color: Colors.grey,
+                color: Colors.transparent,
                 borderRadius: BorderRadius.circular(10),
               ),
             ), // An empty bar chart
@@ -37,7 +40,7 @@ class Bar extends StatelessWidget {
                 heightFactor: total == 0 ? 0 : progress / (100 * total),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColorLight,
+                    color: Colors.brown,
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
@@ -45,7 +48,13 @@ class Bar extends StatelessWidget {
             ), // A percentage bar chart that stack over previous widget
           ])), // A bar chart contain empty bar and percentage bar
       SizedBox(height: 5), // A blank of space
-      Text(weekDate), // A letter of date
+      Text(
+        weekDate,
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Theme.of(context).primaryColorDark,
+        ),
+      ), // A letter of date
       SizedBox(height: 5), // A blank of space
     ]);
   }

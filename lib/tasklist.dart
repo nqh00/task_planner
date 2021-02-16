@@ -10,14 +10,23 @@ class TaskList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 440,
+      height: MediaQuery.of(context).size.height *
+          0.645, // MediaQuery get gerenal device size
       child: tasks.isEmpty
-          ? Container(
-              child: Text(
-                'No tasks available.',
-                textAlign: TextAlign.center,
-              ), // Display when theres no tasks
-            )
+          ? Column(
+              children: <Widget>[
+                Text(
+                  'No tasks available!',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontStyle: FontStyle.italic,
+                    color: Theme.of(context).primaryColorLight,
+                  ),
+                ),
+              ],
+              mainAxisAlignment: MainAxisAlignment.center,
+            ) // Display when theres no tasks
           : ListView.builder(
               itemBuilder: (context, index) {
                 return Card(
@@ -26,7 +35,7 @@ class TaskList extends StatelessWidget {
                       icon: (tasks[index].progress == 100)
                           ? Icon(
                               Icons.check_box_rounded,
-                              color: Theme.of(context).shadowColor,
+                              color: Theme.of(context).toggleableActiveColor,
                             )
                           : Icon(
                               Icons.check_box_outline_blank_rounded,
@@ -57,6 +66,7 @@ class TaskList extends StatelessWidget {
                     ),
                   ), // Delete button
                   elevation: 5,
+                  color: Theme.of(context).cardColor,
                 );
               },
               itemCount: tasks.length,

@@ -47,38 +47,71 @@ class _NewTaskState extends State<NewTask> {
     return Container(
       child: Card(
         child: Column(children: <Widget>[
-          TextField(
-            decoration: InputDecoration(labelText: 'Name your task'),
-            controller: _titleController,
-            keyboardType: TextInputType.text,
-            onSubmitted: (_) => submitted,
+          Container(
+            child: TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Name your task',
+              ),
+              controller: _titleController,
+              keyboardType: TextInputType.text,
+              onSubmitted: (_) => submitted,
+            ),
+            padding: EdgeInsets.only(
+              top: 30,
+              left: 15,
+              right: 15,
+              bottom: 15,
+            ),
           ),
-          TextField(
-            decoration: InputDecoration(labelText: 'Tell us more'),
-            controller: _noteController,
-            keyboardType: TextInputType.text,
-            onSubmitted: (_) => submitted,
+          Container(
+            child: TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Tell us more',
+              ),
+              controller: _noteController,
+              keyboardType: TextInputType.text,
+              onSubmitted: (_) => submitted,
+            ),
+            padding: EdgeInsets.all(15),
           ),
-          Slider(
+          Container(
+            child: Slider(
               value: _currentSliderProgress,
               min: 0,
               max: 100,
+              divisions: 100,
+              label: 'Progress: ${_currentSliderProgress.round()}',
               onChanged: (progress) => setState(() {
-                    _currentSliderProgress = progress;
-                  })),
+                _currentSliderProgress = progress;
+              }),
+            ),
+            padding: EdgeInsets.only(
+              top: 10,
+              bottom: 10,
+            ),
+          ),
           Row(
             children: <Widget>[
-              Expanded(
-                child: Text(_pickedDate == null
-                    ? 'No date chosen.'
-                    : '${_pickedDate.day} / ${_pickedDate.month} / ${_pickedDate.year}'),
+              Card(
+                child: Text(
+                  (_pickedDate == null)
+                      ? 'No date chosen.'
+                      : '${_pickedDate.day} / ${_pickedDate.month} / ${_pickedDate.year}',
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColorDark,
+                    fontSize: 15,
+                  ),
+                ),
               ),
               FlatButton(
                 child: Text('Choose date.'),
                 textColor: Theme.of(context).primaryColorDark,
                 onPressed: _openDatePicker,
-              )
+              ),
             ],
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
           ),
           RaisedButton(
             child: Text('ADD'),
@@ -87,8 +120,14 @@ class _NewTaskState extends State<NewTask> {
             onPressed: submitted,
           ),
         ]),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(10),
+          ),
+        ),
       ),
       padding: EdgeInsets.all(5),
+      // margin: EdgeInsets.all(2),
     );
   }
 }
