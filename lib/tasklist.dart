@@ -11,7 +11,7 @@ class TaskList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height *
-          0.645, // MediaQuery get gerenal device size
+          0.645, // MediaQuery.size get gerenal device size
       child: tasks.isEmpty
           ? Column(
               children: <Widget>[
